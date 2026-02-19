@@ -1,4 +1,4 @@
 package Project;
 
-public class Video {
+public class Video extends LoanTracker{
 }

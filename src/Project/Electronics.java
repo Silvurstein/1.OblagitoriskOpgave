@@ -1,4 +1,4 @@
 package Project;
 
-public class Electronics {
+public class Electronics extends LoanTracker{
 }

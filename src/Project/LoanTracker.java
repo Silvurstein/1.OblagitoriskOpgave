@@ -1,4 +1,10 @@
 package Project;
 
-public class LoanTracker {
+public abstract class LoanTracker {
+    private String title;
+    private int loan;
+    private int fine;
+
+
+
 }

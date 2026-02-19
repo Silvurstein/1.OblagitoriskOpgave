@@ -1,4 +1,5 @@
 package Project;
 
-public class Books {
+public class Books extends LoanTracker {
+
 }
