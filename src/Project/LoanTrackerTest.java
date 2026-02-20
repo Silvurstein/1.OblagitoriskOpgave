@@ -2,26 +2,26 @@ package Project;
 
 public class LoanTrackerTest {
     public static void main(String[] args) {
-
+        System.out.println("Velkommen\n\nMenu:\n1. Lån\n2. Bøder");
     }
-        // ---------------------------------------
-        // Sort by Loan Days (youngest first)
-        // ---------------------------------------
-        public static void sortByAge(Student[] students) {
 
-            for (int i = 0; i < students.length - 1; i++) {
+    // ---------------------------------------
+    // Sort by Loan (lowest first)
+    // ---------------------------------------
+    public static void sortByLoan(Student[] students) {
 
-                for (int j = 0; j < students.length - 1; j++) {
+        for (int i = 0; i < students.length - 1; i++) {
 
-                    // If first student is older → swap
-                    if (students[j].getAge() > students[j + 1].getAge()) {
+            for (int j = 0; j < students.length - 1; j++) {
 
-                        Student temp = students[j];
-                        students[j] = students[j + 1];
-                        students[j + 1] = temp;
-                    }
+                // If first student is older → swap
+                if (students[j].getAge() > students[j + 1].getAge()) {
+
+                    Student temp = students[j];
+                    students[j] = students[j + 1];
+                    students[j + 1] = temp;
                 }
             }
-
+        }
     }
 }
