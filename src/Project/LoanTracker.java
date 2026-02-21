@@ -31,7 +31,7 @@ public abstract class LoanTracker {
 
     @Override
     public String toString() {
-        return "Title: " + title + " | Loam days: " + loan;
+        return "Title: " + title + " | Loan days: " + loan;
     }
 
 }
