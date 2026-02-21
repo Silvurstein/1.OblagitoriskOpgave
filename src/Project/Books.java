@@ -18,8 +18,8 @@ public class Books extends LoanTracker {
     }
 
     @Override
-    public String toString(String athour) {
-         return "Book |" + super.toString() + athour;
+    public String toString() {
+         return "Book |" + super.toString();
 
     }
 }

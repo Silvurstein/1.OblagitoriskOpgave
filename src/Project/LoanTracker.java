@@ -1,46 +1,35 @@
 package Project;
 
 public abstract class LoanTracker {
+
     private String title;
     private int loan;
-    private int fine;
 
-
-    // Constructor
-    public LoanTracker(String title, int loan) {
+    public LoanTracker(String title, int loan){
         this.title = title;
         this.loan = loan;
+
     }
 
-    // Getter
-    public String getTitle() {
+    public String getTitle(){
         return title;
     }
-
-    public int getLoan() {
+    public double getLoan(){
         return loan;
     }
-
-    public int getFine() {
-        return fine;
-    }
-
-    // Setter
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
-
-    public void setExpiryDays(int loan) {
+    public void setLoan(int loan){
         this.loan = loan;
     }
-
-    public void setFine(int fine) {
-        this.fine = fine;
-    }
+    public abstract void getDescription();
 
     @Override
-    public String toString() {
-        return "Title: " + title + " | Loan days: " + loan;
+    public String toString(){
+        return "Furniture: " + title + "\nPrice: " + loan + "kr";
+
     }
 
 }
+
