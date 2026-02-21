@@ -21,6 +21,10 @@ public abstract class LoanTracker {
         return loan;
     }
 
+    public int getFine() {
+        return fine;
+    }
+
     // Setter
     public void setTitle(String title) {
         this.title = title;
@@ -28,6 +32,10 @@ public abstract class LoanTracker {
 
     public void setExpiryDays(int loan) {
         this.loan = loan;
+    }
+
+    public void setFine(int fine) {
+        this.fine = fine;
     }
 
     @Override
