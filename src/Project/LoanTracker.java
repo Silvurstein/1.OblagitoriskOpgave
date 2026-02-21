@@ -5,6 +5,7 @@ public abstract class LoanTracker {
     private int loan;
     private int fine;
 
+
     // Constructor
     public LoanTracker(String title, int loan) {
         this.title = title;
