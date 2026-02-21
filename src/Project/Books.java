@@ -1,6 +1,6 @@
 package Project;
 
-public class Books extends LoanTracker {
+public abstract class Books extends LoanTracker {
 
     String author;
 

@@ -27,7 +27,7 @@ public abstract class LoanTracker {
 
     @Override
     public String toString(){
-        return "Furniture: " + title + "\nPrice: " + loan + "kr";
+        return "Furniture: " + title + "\nLoan: " + loan;
 
     }
 

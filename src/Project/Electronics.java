@@ -6,7 +6,7 @@ public class Electronics extends LoanTracker {
     int baseValue;
     String kitLevel;
 
-    public Electronics(String title, int expiryDays, int loan, String model, int baseValue, String kitLevel) {
+    public Electronics(String title, int expiryDays, int loan) {
         super(title, expiryDays, loan, model, baseValue, kitLevel);
         this.model = model;
         this.baseValue = baseValue;
