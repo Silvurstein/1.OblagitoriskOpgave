@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class LoanTrackerTest {
     static LoanTracker[] availableBooks = {
-            new Fiction("Harry Potter", 14, "J.K. Rowling"),
-            new Fiction("The Hobbit", 14, "J.R.R. Tolkien"),
-            new Fiction("Wheel of Time", 21, "Robert Jordan"),
-            new Fiction("Dune", 21, "Frank Herbert"),
-            new Fiction("The Name of Wind", 14, "Patrick Rothfuss")
+            new Fiction("Harry Potter", 14, "J.K. Rowling", "Fiction"),
+            new Fiction("The Hobbit", 14, "J.R.R. Tolkien", "Fiction"),
+            new Fiction("Wheel of Time", 21, "Robert Jordan", "Fiction"),
+            new Fiction("Dune", 21, "Frank Herbert", "Fiction"),
+            new Fiction("The Name of Wind", 14, "Patrick Rothfuss", "Fiction")
     };
 
     static LoanTracker[] availableVideos = {

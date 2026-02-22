@@ -17,6 +17,6 @@ public class Video extends LoanTracker{
 
     @Override
     public String toString() {
-        return "Video | " + super.toString() + " | Director: " + duration;
+        return "Video | " + super.toString() + " | Duration: " + duration;
     }
 }
