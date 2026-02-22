@@ -22,7 +22,7 @@ public class Electronics extends LoanTracker {
 
     @Override
     public String toString() {
-        return "Electronics | " + super.toString() + " | Model: " + model;
+        return "Electronics | " + super.toString() + " | Model: " + model + "\n";
     }
 }
 

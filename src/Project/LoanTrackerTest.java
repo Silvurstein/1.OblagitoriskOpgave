@@ -13,23 +13,23 @@ public class LoanTrackerTest {
     };
 
     static LoanTracker[] availableVideos = {
-            new Video("Harry Potter", 7, 120), // example duration
-            new Video("The Hobbit", 7, 150), // example duration
-            new Video("Wheel of Time", 14, 180), // example duration
-            new Video("Dune", 14, 140) // example duration
+            new Video("Harry Potter & the prisoners of azkaban", 7, 120),
+            new Video("The Hobbit, an unexpected journey", 7, 150),
+            new Video("Wheel of Time", 14, 180),
+            new Video("Dune part 1", 14, 140)
     };
 
     static LoanTracker[] availableElectronics = {
             new Electronics("Canon Camera", 7, "Model X"),
-            new Electronics("iPad", 14, "Model Y"),
-            new Electronics("Raspberry Pi", 21, "Model Z"),
+            new Electronics("iPad", 14, "Pro 2025"),
+            new Electronics("Raspberry Pi", 21, "Model 4B"),
             new Electronics("Arduino Kit", 14, "Model A"),
     };
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("==== Welcome to the Loan System ===");
-        System.out.println("How many items would you like to loan? ");
+        System.out.println("\n==== Velkommen til lånesystemet ===");
+        System.out.println("Hvor mange ting vil du gerne låne? ");
         int totalLoans = Integer.parseInt(sc.nextLine().trim());
 
         ArrayList<LoanTracker> borrowedItems = new ArrayList<>();
@@ -37,40 +37,40 @@ public class LoanTrackerTest {
 
         while (borrowedItems.size() < totalLoans) {
             int remaining = totalLoans - borrowedItems.size();
-            System.out.println("\nItems still to loan: " + remaining);
-            System.out.print("What type would you like to loan? (book / video / electronics): ");
+            System.out.println("\nTing du mangler at låne: " + remaining);
+            System.out.print("Hvilken type vil du gerne låne? (book / video / electronics): ");
             type = sc.nextLine().trim().toLowerCase();
 
             LoanTracker[] catalog = getCatalog(type);
             if (catalog == null) {
-                System.out.println("Unknown type. Please type book, video, or electronics.");
+                System.out.println("Ukendt type, Skriv book, video, eller electronics.");
                 continue;
             }
 
             // show the list
-            System.out.println("\nAvailable " + type + "s:");
+            System.out.println("\nTilgængelige " + type + "s");
             for (int i = 0; i < catalog.length; i++) {
                 System.out.println(" " + (i + 1) + ". " + catalog[i]);
             }
 
             // Pick a number
-            System.out.print("Enter the number of the item you want to loan: ");
+            System.out.print("Indtast nummeret på den ting du gerne vil låne: ");
             int choice = -1;
             try {
                 choice = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number.");
+                System.out.println("Indtast venligts et gyldigt nr.");
                 continue;
             }
 
             if (choice < 1 || choice > catalog.length) {
-                System.out.println("Number out of range, try again.");
+                System.out.println("Nummeret er ude af rækkevide, prøv igen");
                 continue;
             }
 
             LoanTracker chosen = catalog[choice - 1];
             borrowedItems.add(chosen);
-            System.out.println("Added: " + chosen.getTitle());
+            System.out.println("Tilføjet: " + chosen.getTitle());
         }
 
         // Convert list to array and sort
@@ -104,8 +104,8 @@ public class LoanTrackerTest {
     }
 
     static void printSummary(LoanTracker[] items) {
-        System.out.println("\n========== LOAN SUMMARY ==========");
-        System.out.println("You borrowed " + items.length + " item(s), sorted by expiry:\n");
+        System.out.println("\n========== Låne Opsummering ==========");
+        System.out.println("Du lånte " + items.length + " Ting sorteret efter udløbsdato:\n");
         for (int i = 0; i < items.length; i++) {
             System.out.println("  " + (i + 1) + ". " + items[i]);
         }

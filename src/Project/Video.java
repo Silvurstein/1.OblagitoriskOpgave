@@ -5,6 +5,7 @@ public class Video extends LoanTracker{
 
     public Video(String title, int loan, int duration) {
         super(title, loan);
+        this.duration = duration;
     }
 
     public int getDuration() {
@@ -17,6 +18,6 @@ public class Video extends LoanTracker{
 
     @Override
     public String toString() {
-        return "Video | " + super.toString() + " | Duration: " + duration;
+        return "Video | " + super.toString() + " | Duration: " + duration + "\n";
     }
 }

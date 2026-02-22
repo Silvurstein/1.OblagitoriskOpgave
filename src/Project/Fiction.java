@@ -21,6 +21,6 @@ public class Fiction extends Books {
 
     @Override
     public String toString() {
-        return super.toString() + " | Genre: " + genre;
+        return super.toString() + " | Genre: " + genre + "\n";
     }
 }
