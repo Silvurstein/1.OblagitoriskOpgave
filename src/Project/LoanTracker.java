@@ -14,7 +14,7 @@ public abstract class LoanTracker {
     public String getTitle(){
         return title;
     }
-    public double getLoan(){
+    public int getLoan(){
         return loan;
     }
     public void setTitle(String title){
@@ -23,11 +23,11 @@ public abstract class LoanTracker {
     public void setLoan(int loan){
         this.loan = loan;
     }
-    public abstract void getDescription();
+    public abstract void displayInfo();
 
     @Override
     public String toString(){
-        return "Furniture: " + title + "\nLoan: " + loan;
+        return "Title: " + title + "\nLoan days: " + loan;
 
     }
 

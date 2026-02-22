@@ -8,18 +8,18 @@ public abstract class Books extends LoanTracker {
         super(title, loan);
         this.author = author;
     }
-    public void lendItem(){
-         System.out.println(getTitle() + author);
+    public String getAuthor() {
+         return author;
     }
 
     @Override
     public void displayInfo() {
-         lendItem();
+         System.out.println(toString());
     }
 
     @Override
     public String toString() {
-         return "Book |" + super.toString();
+         return "Book | " + super.toString() + " Author: " + author;
 
     }
 }

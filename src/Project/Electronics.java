@@ -2,29 +2,27 @@ package Project;
 
 public class Electronics extends LoanTracker {
 
-    String model;
-    int baseValue;
-    String kitLevel;
+    private String model;
 
-    public Electronics(String title, int expiryDays, int loan) {
-        super(title, expiryDays, loan, model, baseValue, kitLevel);
+
+    public Electronics(String title, int loan, String model) {
+        super(title, loan);
         this.model = model;
-        this.baseValue = baseValue;
-        this.kitLevel = kitLevel;
+
     }
 
-    public void lendItem() {
-        System.out.println(getTitle() + " item rented ");
+    public String getModel() {
+        return model;
     }
 
     @Override
     public void displayInfo() {
-        lendItem();
+        System.out.println(toString());
     }
 
     @Override
     public String toString() {
-        return "Electronics" + super.toString();
+        return "Electronics | " + super.toString() + " | Model: " + model;
     }
 }
 
