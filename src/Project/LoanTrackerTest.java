@@ -1,9 +1,10 @@
 package Project;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.ArrayList; // liste der kan vokse dynamisk
+import java.util.Scanner; // bruges til bruger input
 
 public class LoanTrackerTest {
+    // arrays med alle ting man kan låne
     static LoanTracker[] availableBooks = {
             new Fiction("Harry Potter", 14, "J.K. Rowling", "Fiction"),
             new Fiction("The Hobbit", 14, "J.R.R. Tolkien", "Fiction"),
@@ -28,9 +29,29 @@ public class LoanTrackerTest {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         System.out.println("\n==== Velkommen til lånesystemet ===");
-        System.out.println("Hvor mange ting vil du gerne låne? ");
-        int totalLoans = Integer.parseInt(sc.nextLine().trim());
+
+        // Maks antal ting man kan låne
+        int maxLoans = availableBooks.length + availableVideos.length + availableElectronics.length;
+
+        // spørg hvor mange ting brugeren vil låne
+        System.out.println("Hvor mange ting vil du gerne låne? (maks " + maxLoans + ")");
+        int totalLoans = 0;
+        while (true) {
+            if (sc.hasNextInt()) {
+                totalLoans = sc.nextInt();
+                sc.nextLine(); // ryd newline
+                if (totalLoans >= 1 && totalLoans <= maxLoans) {
+                    break;
+                } else {
+                    System.out.println("Skriv et tal mellem 1 og " + maxLoans + ": ");
+                }
+            } else {
+                System.out.println("Skriv et tal mellem 1 og " + maxLoans + ": ");
+                sc.nextLine(); // fjern forkert input
+            }
+        }
 
         ArrayList<LoanTracker> borrowedItems = new ArrayList<>();
         String type = "";
@@ -54,35 +75,42 @@ public class LoanTrackerTest {
             }
 
             // Pick a number
-            System.out.print("Indtast nummeret på den ting du gerne vil låne: ");
             int choice = -1;
-            try {
-                choice = Integer.parseInt(sc.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Indtast venligts et gyldigt nr.");
-                continue;
-            }
-
-            if (choice < 1 || choice > catalog.length) {
-                System.out.println("Nummeret er ude af rækkevide, prøv igen");
-                continue;
+            // While true er konstant aktiv indtil den rammer break
+            while (true) {
+                System.out.print("Indtast nummeret på den ting du gerne vil låne (1-" + catalog.length + "): ");
+                // vi laver flere ifs under hinanden for at isolere hvis der kommer problemer
+                if (sc.hasNextInt()) {
+                    choice = sc.nextInt();
+                    sc.nextLine(); // ryd newline
+                    if (choice >= 1 && choice <= catalog.length) {
+                        if (borrowedItems.size() < maxLoans) {
+                            break; // break bryder loopet
+                        } else {
+                            System.out.println("Du har allerede lånt maks antal ting: " + maxLoans);
+                        }
+                    } else {
+                        System.out.println("Nummeret findes ikke, prøv igen.");
+                    }
+                } else {
+                    System.out.println("Skriv kun tal.");
+                    sc.nextLine();
+                }
             }
 
             LoanTracker chosen = catalog[choice - 1];
             borrowedItems.add(chosen);
             System.out.println("Tilføjet: " + chosen.getTitle());
         }
+        // -------------------------------------------------------------------------------------
 
-        // Convert list to array and sort
         LoanTracker[] loanedArray = borrowedItems.toArray(new LoanTracker[0]);
         sortByLoan(loanedArray);
-
-        // Print summary
         printSummary(loanedArray);
         sc.close();
-
     }
 
+    // returnerer det rigtige katalog ud fra tekst
     static LoanTracker[] getCatalog(String type) {
         switch (type) {
             case "book": return availableBooks;
@@ -92,6 +120,8 @@ public class LoanTrackerTest {
         }
     }
 
+    // bubble sort
+    // sorterer items så laveste loan days kommer først
     static void sortByLoan(LoanTracker[] items) {
         for (int i = 0; i < items.length - 1; i++) {
             for (int j = 0; j < items.length - 1 - i; j++) {
@@ -104,6 +134,7 @@ public class LoanTrackerTest {
         }
     }
 
+    // printer en samlet liste til sidst
     static void printSummary(LoanTracker[] items) {
         System.out.println("\n========== Låne Opsummering ==========");
         System.out.println("Du lånte " + items.length + " Ting sorteret efter udløbsdato:\n");
