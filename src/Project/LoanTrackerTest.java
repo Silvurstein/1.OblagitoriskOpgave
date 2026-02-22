@@ -80,6 +80,7 @@ public class LoanTrackerTest {
         // Print summary
         printSummary(loanedArray);
         sc.close();
+
     }
 
     static LoanTracker[] getCatalog(String type) {
