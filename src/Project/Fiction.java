@@ -9,7 +9,8 @@ public class Fiction extends Books {
 
     // Constructor, bruges når vi laver en ny Fiction bog (alle vores bøger)
     public Fiction(String title, int loan, String author, String genre) {
-        super(title, loan, author); // kalder constructoren fra books som kalder fra LoanTracker
+        super(title, loan, author); /* kalder constructoren fra books som kalder fra LoanTracker
+        fordi Fiction extends books og books extends LoanTracker */
         this.genre = genre; // gemmer genre i denne klasse
     }
 

@@ -1,7 +1,7 @@
 package Project;
 
 // abstract = man kan IKKE lave et objekt direkte af Books
-// den skal arves (extends) af en anden klasse,  fx LoanTracker eller Fiction
+// den skal arves (extends) af en anden klasse fx LoanTracker
 public abstract class Books extends LoanTracker {
     String author;
 

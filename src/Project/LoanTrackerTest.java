@@ -26,97 +26,73 @@ public class LoanTrackerTest {
             new Electronics("Raspberry Pi", 21, "Model 4B"),
             new Electronics("Arduino Kit", 14, "Model A"),
     };
-
+    // Main Method
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("\n==== Velkommen til lånesystemet ===");
+        System.out.println("==== Velkommen til lånesystemet ===");
 
-        // Maks antal ting man kan låne
-        int maxLoans = availableBooks.length + availableVideos.length + availableElectronics.length;
+        // Maks antal man kan låne
+        int maxLoans =
+                availableBooks.length +
+                        availableVideos.length +
+                        availableElectronics.length;
 
-        // spørg hvor mange ting brugeren vil låne
-        System.out.println("Hvor mange ting vil du gerne låne? (maks " + maxLoans + ")");
-        int totalLoans = 0;
-        while (true) {
-            if (sc.hasNextInt()) {
-                totalLoans = sc.nextInt();
-                sc.nextLine(); // ryd newline
-                if (totalLoans >= 1 && totalLoans <= maxLoans) {
-                    break;
-                } else {
-                    System.out.println("Skriv et tal mellem 1 og " + maxLoans + ": ");
-                }
-            } else {
-                System.out.println("Skriv et tal mellem 1 og " + maxLoans + ": ");
-                sc.nextLine(); // fjern forkert input
-            }
-        }
+        // Spørger hvor mange ting man vil låne og giver en limit
+        System.out.println("Hvor mange ting vil du låne? (maks " + maxLoans + ")");
+        int totalLoans = Integer.parseInt(sc.nextLine());
 
         ArrayList<LoanTracker> borrowedItems = new ArrayList<>();
-        String type = "";
 
+        // while loop der kører indtil du har valgt dine ting
         while (borrowedItems.size() < totalLoans) {
-            int remaining = totalLoans - borrowedItems.size();
-            System.out.println("\nTing du mangler at låne: " + remaining);
-            System.out.print("Hvilken type vil du gerne låne? (book / video / electronics): ");
-            type = sc.nextLine().trim().toLowerCase();
+
+            System.out.println("\nVælg type: book / video / electronics");
+            String type = sc.nextLine().toLowerCase();
 
             LoanTracker[] catalog = getCatalog(type);
+
             if (catalog == null) {
-                System.out.println("Ukendt type, Skriv book, video, eller electronics.");
+                System.out.println("Ukendt type.");
                 continue;
             }
 
-            // show the list
-            System.out.println("\nTilgængelige " + type + "s");
-            for (int i = 0; i < catalog.length; i++) {
-                System.out.println(" " + (i + 1) + ". " + catalog[i]);
-            }
+            printCatalog(catalog);
 
-            // Pick a number
-            int choice = -1;
-            // While true er konstant aktiv indtil den rammer break
-            while (true) {
-                System.out.print("Indtast nummeret på den ting du gerne vil låne (1-" + catalog.length + "): ");
-                // vi laver flere ifs under hinanden for at isolere hvis der kommer problemer
-                if (sc.hasNextInt()) {
-                    choice = sc.nextInt();
-                    sc.nextLine(); // ryd newline
-                    if (choice >= 1 && choice <= catalog.length) {
-                        if (borrowedItems.size() < maxLoans) {
-                            break; // break bryder loopet
-                        } else {
-                            System.out.println("Du har allerede lånt maks antal ting: " + maxLoans);
-                        }
-                    } else {
-                        System.out.println("Nummeret findes ikke, prøv igen.");
-                    }
-                } else {
-                    System.out.println("Skriv kun tal.");
-                    sc.nextLine();
-                }
-            }
+            System.out.println("Indtast nummer:");
+            int choice = Integer.parseInt(sc.nextLine());
 
             LoanTracker chosen = catalog[choice - 1];
             borrowedItems.add(chosen);
+
             System.out.println("Tilføjet: " + chosen.getTitle());
         }
-        // -------------------------------------------------------------------------------------
 
-        LoanTracker[] loanedArray = borrowedItems.toArray(new LoanTracker[0]);
-        sortByLoan(loanedArray);
-        printSummary(loanedArray);
-        sc.close();
     }
 
-    // returnerer det rigtige katalog ud fra tekst
+
+    /* Denne metode vælger det rigtige katalog ud fra det man skriver.
+    Hvis brugeren skriver "book", får de book-arrayet osv.
+    Den returnerer null hvis typen ikke findes, fx hvis du skriver boook */
     static LoanTracker[] getCatalog(String type) {
-        switch (type) {
-            case "book": return availableBooks;
-            case "video": return availableVideos;
-            case "electronics": return availableElectronics;
-            default: return null;
+
+        if (type.equals("book")) {
+            return availableBooks;
+        }
+        else if (type.equals("video")) {
+            return availableVideos;
+        }
+        else if (type.equals("electronics")) {
+            return availableElectronics;
+        }
+        return null;
+    }
+
+    /* Går igennem arrayet med et "for" loop og viser dem med nummer,
+     så man kan vælge 1, 2, 3 osv */
+    static void printCatalog(LoanTracker[] catalog) {
+        for (int i = 0; i < catalog.length; i++) {
+            System.out.println((i + 1) + ". " + catalog[i]);
         }
     }
 
