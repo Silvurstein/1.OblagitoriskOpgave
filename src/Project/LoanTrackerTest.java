@@ -68,6 +68,10 @@ public class LoanTrackerTest {
             System.out.println("Tilføjet: " + chosen.getTitle());
         }
 
+        sortByLoan(borrowedItems);
+
+        printSummary(borrowedItems);
+
     }
 
 
@@ -98,24 +102,24 @@ public class LoanTrackerTest {
 
     // bubble sort
     // sorterer items så laveste loan days kommer først
-    static void sortByLoan(LoanTracker[] items) {
-        for (int i = 0; i < items.length - 1; i++) {
-            for (int j = 0; j < items.length - 1 - i; j++) {
-                if (items[j].getLoan() > items[j + 1].getLoan()) {
-                    LoanTracker temp = items[j];
-                    items[j] = items[j + 1];
-                    items[j + 1] = temp;
+    static void sortByLoan(ArrayList<LoanTracker> items) {
+        for (int i = 0; i < items.size() - 1; i++) {
+            for (int j = 0; j < items.size() - 1 - i; j++) {
+                if (items.get(j).getLoan() > items.get(j + 1).getLoan()) {
+                    LoanTracker temp = items.get(j);
+                    items.set(j, items.get(j + 1));
+                    items.set(j + 1, temp);
                 }
             }
         }
     }
 
     // printer en samlet liste til sidst
-    static void printSummary(LoanTracker[] items) {
+    static void printSummary(ArrayList<LoanTracker> items) {
         System.out.println("\n========== Låne Opsummering ==========");
-        System.out.println("Du lånte " + items.length + " Ting sorteret efter udløbsdato:\n");
-        for (int i = 0; i < items.length; i++) {
-            System.out.println("  " + (i + 1) + ". " + items[i]);
+        System.out.println("Du lånte " + items.size() + " Ting sorteret efter udløbsdato:\n");
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println("  " + (i + 1) + ". " + items.get(i));
         }
         System.out.println("==================================");
     }
