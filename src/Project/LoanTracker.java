@@ -30,6 +30,9 @@ public abstract class LoanTracker {
     public void setLoan(int loan){
         this.loan = loan;
     }
+    public int getLateFee(){
+        return 0;
+    }
     /* abstract metode betyder, ALLE underklasser SKAL lave deres egen version
     LoanTracker ved ikke hvordan info skal vises, så Books/Electronics bestemmer selv */
     public abstract void displayInfo();

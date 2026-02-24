@@ -14,6 +14,12 @@ public class Video extends LoanTracker{
     public int getDuration() {
         return duration;
     }
+
+    // vi override getFee fra loantracker fordi den er på 0, med override så henter vi koden men kan nu give den ny værdi
+    @Override
+    public int getLateFee() {
+        return 30; // bøde pr. dag for videoer
+    }
     // @Override betyder vi overskriver en method fra LoanTracker
     // denne method viser info om Videoen
     @Override

@@ -17,6 +17,12 @@ public class Electronics extends LoanTracker {
         return model;
     }
 
+    // vi override getFee fra loantracker fordi den er på 0, med override så henter vi koden men kan nu give den ny værdi
+    @Override
+    public int getLateFee() {
+        return 35; // bøde pr. dag for electronics
+    }
+
     // @Override betyder vi overskriver en method fra LoanTracker
     // denne method viser info om Electronics
     @Override

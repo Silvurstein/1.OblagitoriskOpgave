@@ -17,6 +17,12 @@ public abstract class Books extends LoanTracker {
          return author;
     }
 
+    // vi override getFee fra loantracker fordi den er på 0, med override så henter vi koden men kan nu give den ny værdi
+    @Override
+    public int getLateFee() {
+        return 25; // bøde pr. dag for bøger
+    }
+
     // @Override betyder vi overskriver en method fra LoanTracker
     // denne method viser info om bogen
     @Override

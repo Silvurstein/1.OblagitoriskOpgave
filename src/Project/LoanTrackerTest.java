@@ -118,9 +118,17 @@ public class LoanTrackerTest {
     static void printSummary(ArrayList<LoanTracker> items) {
         System.out.println("\n========== Låne Opsummering ==========");
         System.out.println("Du lånte " + items.size() + " Ting sorteret efter udløbsdato:\n");
+
+        int totalFee = 0;
+
         for (int i = 0; i < items.size(); i++) {
-            System.out.println("  " + (i + 1) + ". " + items.get(i));
+
+            LoanTracker item = items.get(i);
+
+            int lateFee = item.getLateFee();
+            System.out.println(
+                    (i + 1) + ". " + item + " ↳ Late fee per day: " + lateFee + " kr.\n==================================================="
+            );
         }
-        System.out.println("==================================");
     }
 }
